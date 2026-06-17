@@ -60,22 +60,4 @@
       window.location.href = "mailto:kristi@kblifeandco.com?subject=" + subject + "&body=" + body;
     });
   }
-
-  // Calendly fallback: if the inline widget hasn't injected an iframe a few
-  // seconds after load (blocked by tracking prevention, ad-blocker, etc.),
-  // replace the empty container with a direct "Book on Calendly" button so
-  // visitors always have a working path to book.
-  window.addEventListener("load", function () {
-    setTimeout(function () {
-      var w = document.querySelector(".calendly-inline-widget");
-      if (!w || w.querySelector("iframe")) return;
-      var raw = w.getAttribute("data-url") || "https://calendly.com/kblifeagencyandco/lit";
-      var href = raw.split("?")[0];
-      w.innerHTML =
-        '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2rem;text-align:center;gap:1.2rem">' +
-          '<p style="margin:0;max-width:44ch">The booking calendar didn\'t load in your browser. Click below to book your free consultation directly on Calendly &mdash; it opens in a new tab.</p>' +
-          '<a class="btn btn--gold btn--lg" href="' + href + '" target="_blank" rel="noopener">Book Your Free Consultation</a>' +
-        '</div>';
-    }, 3500);
-  });
 })();
